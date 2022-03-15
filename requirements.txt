@@ -1,0 +1,11 @@
+Django==4.0.2
+djangorestframework
+gunicorn
+psycopg2-binary
+django-dotenv
+django-htmx
+pint
+django-storages
+boto3
+pillow
+requests

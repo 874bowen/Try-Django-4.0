@@ -53,6 +53,14 @@
     {% endfor %}
     {% endif %}
 {% endblock %}
+{% block search %}
+        <div style="margin-top: 20px;">
+            <form>
+                <input type="text" name="query"/>
+                <input type="submit" value="search"/>
+            </form>
+        </div>
+{% endblock %}
 {% block content %}
 {% endblock %}
 </div>

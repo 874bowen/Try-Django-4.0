@@ -5,8 +5,12 @@
         {% if articles_list %}
             {% for article in articles_list %}
                 <li>
-                    <h3>{{ article.title }} (id: {{article.id}})</h3>
-                    <p>{{ article.content }}</p>
+                    <p>
+                        {{ article.title }} <a href="{% url 'articles:article_detail' article.id %}">View</a>
+
+                    </p>
+                    (<a href="{% url 'articles:article_update' article.id %}">Update</a> |
+                    <a href="{% url 'articles:article_delete' article.id %}">Delete</a>) <br/>
                 </li>
             {% endfor %}
         {% endif %}

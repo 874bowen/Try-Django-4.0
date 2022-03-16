@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Article List</h1>
+    <ul>
+        {% if articles_list %}
+            {% for article in articles_list %}
+                <li>
+                    <h3>{{ article.title }} (id: {{article.id}})</h3>
+                    <p>{{ article.content }}</p>
+                </li>
+            {% endfor %}
+        {% endif %}
+
+    </ul>
+    <p>
+        <a href="{% url 'articles:all' %}">View Articles</a> ({{ articles_count }}) |
+        <a href="{% url 'articles:article_create' %}">Add an Article</a>
+    </p>
+{% endblock %}

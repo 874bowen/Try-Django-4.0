@@ -12,8 +12,26 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 # Create your views here.
+# def ArticleSearch(request):
+#     print(request)
+#     query_dict = request.GET
+#     print(query_dict)
+#     q = query_dict.get("query")
+#     print(q)
+#     try:
+#         query = int(query_dict.get("query"))
+#         print(query)
+#     except:
+#         query = None
+#
+#     if query is not None:
+#         article = Article.objects.get(id=query)
+#
+#     context = {"article": article}
+#     return render(request, "articles/article_search.html", context)
+#
 
-class HomeView(LoginRequiredMixin, View):
+class HomeView(View):
 
     def get(self, request):
         # print(request.user)

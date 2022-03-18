@@ -9,10 +9,10 @@
                         {{ article.title }} <a href="{% url 'articles:article_detail' article.id %}">View</a>
 
                     </p>
-                    {% if article.owner = user %}
+
                     (<a href="{% url 'articles:article_update' article.id %}">Update</a> |
                     <a href="{% url 'articles:article_delete' article.id %}">Delete</a>) <br/>
-                    {% endif %}
+
                 </li>
             {% endfor %}
         {% endif %}

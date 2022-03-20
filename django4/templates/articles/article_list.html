@@ -2,29 +2,26 @@
 {% block content %}
     <h1>Article List</h1>
     <ul>
-        {% if articles_list %}
-            {% for article in articles_list %}
+        {% if article_list %}
+            {% for article in article_list %}
                 <li>
-                    <p>
-                        {{ article.title }} <a href="{% url 'articles:article_detail' article.id %}">View</a>
-
-                    </p>
-
-                    (<a href="{% url 'articles:article_update' article.id %}">Update</a> |
-                    <a href="{% url 'articles:article_delete' article.id %}">Delete</a>) <br/>
-
+                    <p>{{ article.title }} by -- {{article.owner}} <a href="{% url 'articles:article_detail' article.id %}">View</a></p>
+                    {% if article.owner == user %}
+                    (<a href="{% url 'articles:article_update' article.id %}">Edit</a> |
+                    <a href="{% url 'articles:article_delete' article.id %}">Delete</a>)
+                    {% endif %}
                 </li>
             {% endfor %}
         {% endif %}
 
     </ul>
     <p>
-        <a href="{% url 'articles:all' %}">View Articles</a> ({{ articles_count }}) |
-        <a href="{% url 'articles:article_create' %}">Add an Article</a>
+        <a href="{% url 'articles:all' %}">View Articles</a> ({{ article_count }}) |
         {% if user.is_authenticated %}
+        <a href="{% url 'articles:article_create' %}">Add an Article</a>
         <a href="{% url 'logout' %}?next={% url 'articles:all' %}">Logout</a>
         {% else %}
-        <a href="{% url 'login' %}?next={% url 'articles:all' %}">Login</a>
+        <a href="{% url 'login' %}?next={% url 'articles:all' %}">Login to add an article</a>
         {% endif %}
     </p>
 {% endblock %}

@@ -6,10 +6,10 @@ from django import forms
 class ArticleForm(forms.Form):
     title = forms.CharField()
     content = forms.CharField(widget=forms.Textarea)
-
+    owner = forms.CharField()
     class Meta:
         model = Article
-        fields = ['title', 'content']
+        fields = ['title', 'content', 'owner']
 
     def clean(self):
         data = self.cleaned_data

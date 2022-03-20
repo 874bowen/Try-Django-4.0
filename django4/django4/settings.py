@@ -70,7 +70,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django4.wsgi.application'
 
-
+#
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 

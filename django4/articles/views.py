@@ -1,35 +1,18 @@
 import random
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import DetailView
 from .models import Article
-from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from .forms import ArticleForm
 
 
 # Create your views here.
-# def ArticleSearch(request):
-#     print(request)
-#     query_dict = request.GET
-#     print(query_dict)
-#     q = query_dict.get("query")
-#     print(q)
-#     try:
-#         query = int(query_dict.get("query"))
-#         print(query)
-#     except:
-#         query = None
-#
-#     if query is not None:
-#         article = Article.objects.get(id=query)
-#
-#     context = {"article": article}
-#     return render(request, "articles/article_search.html", context)
-#
 
 class HomeView(View):
 
@@ -41,6 +24,18 @@ class HomeView(View):
         ctx = {"articles_list": articles, "articles_count": count}
 
         return render(request, 'articles/article_list.html', ctx)
+
+
+# class RegisterView(View):
+
+def register_view(request):
+    form = UserCreationForm(request.POST or None)
+    ctx = {"form": form}
+    if form.is_valid():
+        user_obj = form.save()
+        return HttpResponseRedirect(reverse('articles:all'))
+
+    return render(request, 'registration/registration.html', ctx)
 
 
 class ArticleFormView(FormView, View):

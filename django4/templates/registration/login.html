@@ -11,5 +11,6 @@
 {{ form.as_p }}
 <input type="submit" class="btn btn-primary" value="Login" />
 <input type="hidden" name="next" value="{{ next }}" />
+<p>Need an account? Please <a href="{% url 'articles:register' %}">Register</a></p>
 </form>
 {% endblock %}
